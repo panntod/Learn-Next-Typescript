@@ -33,7 +33,7 @@ export async function findUser(data: FormData) {
       OR: [
         { email: keyword },
         { kelas: keyword },
-        { id: parseInt(keyword) || undefined },
+        { id: keyword },
         { name: keyword },
       ],
     },
@@ -42,7 +42,7 @@ export async function findUser(data: FormData) {
   return result;
 }
 
-export async function findUniqueUser(userId: number) {
+export async function findUniqueUser(userId: string) {
   const result = await prisma.user.findUnique({
     where: { id: userId },
   });
@@ -55,8 +55,7 @@ export async function updateUser(
   newData: FormData
 ): Promise<ResponseMessage> {
   try {
-    const id = newData.get("id") as string;
-    const userId = parseInt(id);
+    const userId = newData.get("id") as string;
 
     await prisma.user.update({
       where: { id: userId },
@@ -76,7 +75,7 @@ export async function updateUser(
   }
 }
 
-export async function deleteUser(userId: number): Promise<ResponseMessage> {
+export async function deleteUser(userId: string): Promise<ResponseMessage> {
   try {
     await prisma.user.delete({
       where: {
