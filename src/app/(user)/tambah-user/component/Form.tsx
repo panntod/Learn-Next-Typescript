@@ -1,6 +1,7 @@
 "use client";
 
 import { createUser } from "@/actions/user.actions";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useFormState, useFormStatus } from "react-dom";
@@ -34,6 +35,7 @@ export default function NewForm() {
     useEffect(() => {
         if (formState.success) {
             toast.success(formState.message);
+            revalidatePath("/user")
             redirect("/user")
         } else if (formState.success == false) {
             toast.error(formState.message);

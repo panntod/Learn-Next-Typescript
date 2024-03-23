@@ -2,7 +2,6 @@
 import Link from "next/link";
 
 import { LoginInterface } from "@/types/Login.type";
-import { handleLogin } from "@/utils/login.query";
 import { useState } from "react";
 
 export default function Login() {
@@ -22,7 +21,6 @@ export default function Login() {
   };
 
   const handleSave = async (data: LoginInterface) => {
-    // const response = await handleLogin(data)
     console.log("Logging in with:", data);
   };
   return (
@@ -137,7 +135,7 @@ export default function Login() {
             </div>
           </form>
           <div className="mt-4 text-sm text-gray-600 text-center">
-            <p>Don't have any account? <Link href="#" className="text-black hover:underline">Login here</Link>
+            <p>Don&lsquo;t have any account? <Link href="#" className="text-black hover:underline">Login here</Link>
             </p>
           </div>
         </div>
