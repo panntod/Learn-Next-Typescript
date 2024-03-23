@@ -23,7 +23,7 @@ export default function Home() {
     setLoading(false)
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     const response = await deleteUser(id);
     if (response.success == true) {
       toast.success(response.message);
@@ -44,7 +44,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-4 text-center">User Details</h2>
             <Link className="btn mb-6 w-64 btn-primary text-white" href={"/tambah-user"}>Tambah User</Link>
             <div className="gap-6 mb-6 flex justify-center flex-wrap">
-              {dataUser?.map((data) => <Card data={data} onDrop={() => { handleDelete(data.id) }} />)}
+              {dataUser?.map((data) => <Card data={data} key={data.id} onDrop={() => { handleDelete(data.id) }} />)}
             </div>
           </div>
         </div>

@@ -29,7 +29,6 @@ export default function UpdateForm({ userId }: { userId: string }) {
     const resetForm = useRef<HTMLFormElement>(null);
     const [user, setUser] = useState<UserInterface | null>();
     const [loading, setLoading] = useState(true)
-    const id = parseInt(userId)
 
     // @ts-expect-error
     const [formState, formAction] = useFormState(updateUser, {
@@ -42,7 +41,7 @@ export default function UpdateForm({ userId }: { userId: string }) {
     }, []);
 
     const init = async () => {
-        const result = await findUniqueUser(id);
+        const result = await findUniqueUser(userId);
         setUser(result);
         setLoading(false)
     };
