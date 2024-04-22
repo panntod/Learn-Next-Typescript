@@ -83,6 +83,7 @@ export async function deleteUser(userId: string): Promise<ResponseMessage> {
       },
     });
 
+    revalidatePath("/user");
     return { success: true, message: "Omaygyat! Berhasil delete user" };
   } catch (error) {
     console.error("Error deleting user:", error);
