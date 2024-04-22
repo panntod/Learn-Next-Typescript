@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { deleteUser } from "@/actions/user.actions";
-import { UserInterface } from "@/types/User.type";
 import { Card } from "@/app/component/Card";
 import { toast } from "sonner";
 import { PrismaClient } from "@prisma/client";
