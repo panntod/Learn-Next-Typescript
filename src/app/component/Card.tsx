@@ -1,6 +1,7 @@
-import { navigateEdit } from '@/actions/redirect.actions'
-import { UserInterface } from '@/types/User.type'
+"use client";
+
 import Link from 'next/link';
+import { UserInterface } from '@/types/User.type'
 import { PrimaryButton, CloseButton } from './Button';
 
 export const Card = ({ data, onDrop }: { data: UserInterface, onDrop: () => void }) => {
