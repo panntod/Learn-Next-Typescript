@@ -1,8 +1,9 @@
 import { navigateEdit } from '@/actions/redirect.actions'
 import { UserInterface } from '@/types/User.type'
+import Link from 'next/link';
+import { PrimaryButton, CloseButton } from './Button';
 
 export const Card = ({ data, onDrop }: { data: UserInterface, onDrop: () => void }) => {
-    const dialogElement = document.getElementById('modalDelete') as HTMLDialogElement;
     
     return (
         <>
@@ -14,20 +15,20 @@ export const Card = ({ data, onDrop }: { data: UserInterface, onDrop: () => void
                     <p>Kelas: {data.kelas}</p>
                 </div>
                 <div>
-                    <button className='btn mt-4 w-full btn-warning text-white' onClick={() => navigateEdit(data.id)}>Update</button>
-                    <button className="btn mt-4 w-full btn-error text-white" onClick={() => dialogElement.showModal()}>Delete</button>
+                    <Link className='btn mt-4 w-full btn-warning text-white' href={`/${data.id}/edit`}>Update</Link>
+                    <PrimaryButton onClick={()=>{const dialogElement = document.getElementById('modalDelete') as HTMLDialogElement; dialogElement.showModal()}}>Delete</PrimaryButton>
                 </div>
             </div>
             <dialog id="modalDelete" className="modal">
                 <div className="modal-box">
                     <form method="dialog">
-                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <CloseButton>✕</CloseButton>
                     </form>
                     <h3 className="font-bold text-lg">Hapus User {data.name}</h3>
                     <p className="py-4">Apakah kamu yakin ingin menghapus data ini!</p>
                     <div className="modal-action">
                         <form method="dialog">
-                            <button className="btn btn-error text-white" onClick={() => onDrop()}>Delete</button>
+                            <PrimaryButton  onClick={() => onDrop()}>Delete</PrimaryButton>
                         </form>
                     </div>
                 </div>
